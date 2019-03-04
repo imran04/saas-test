@@ -11,6 +11,7 @@ namespace backEnd.Infra
     {
         public string Name { get; set; }
         public string[] Hostnames { get; set; }
+        public string BasePath { get; set; }
     }
 
     public class AppTenantResolver : ITenantResolver<AppTenant>
@@ -19,15 +20,19 @@ namespace backEnd.Infra
         {
         new AppTenant {
             Name = "Tenant 1",
-            Hostnames = new[] { "34.73.160.251/aa" }
+            Hostnames = new[] { "34.73.160.251/aa" },
+            BasePath ="/aa"
         },
          new AppTenant {
             Name = "yusuf",
-            Hostnames = new[] { "34.73.160.251/c/" }
+            Hostnames = new[] { "34.73.160.251/c/" },
+            BasePath="/c/"
+            
         },
         new AppTenant {
             Name = "Tenant 2",
-            Hostnames = new[] { "34.73.160.251" }
+            Hostnames = new[] { "34.73.160.251" },
+            BasePath=""
         }
     });
 
@@ -37,7 +42,7 @@ namespace backEnd.Infra
             Console.WriteLine("-->" + context.Request.Host.Value.ToLower());
             var tenant = tenants.FirstOrDefault(t =>
                 t.Hostnames.Any(h => h.Equals(context.Request.Host.Value.ToLower())));
-
+           
             if (tenant != null)
             {
                 Console.WriteLine(tenant.Name + ":" + tenant.Hostnames);
@@ -50,6 +55,7 @@ namespace backEnd.Infra
                 tenantContext = new TenantContext<AppTenant>(tenants.FirstOrDefault());
             }
 
+            context.Request.Path=context.Request.Path.ToString().Remove(13, tenant.BasePath.Length);
             return tenantContext; 
         }
     }
