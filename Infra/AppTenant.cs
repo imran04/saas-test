@@ -19,7 +19,7 @@ namespace backEnd.Infra
         {
         new AppTenant {
             Name = "Tenant 1",
-            Hostnames = new[] {  "34.73.160.251" , }
+            Hostnames = new[] { "34.73.160.251/aa" }
         },
          new AppTenant {
             Name = "yusuf",
@@ -27,7 +27,7 @@ namespace backEnd.Infra
         },
         new AppTenant {
             Name = "Tenant 2",
-            Hostnames = new[] { "34.73.160.251/aa/" }
+            Hostnames = new[] { "34.73.160.251" }
         }
     });
 
@@ -40,10 +40,17 @@ namespace backEnd.Infra
 
             if (tenant != null)
             {
+                Console.WriteLine(tenant.Name + ":" + tenant.Hostnames);
                 tenantContext = new TenantContext<AppTenant>(tenant);
             }
+            else
+            {
+                tenant = tenants.FirstOrDefault();
+                Console.WriteLine(tenant.Name + ":" + tenant.Hostnames);
+                tenantContext = new TenantContext<AppTenant>(tenants.FirstOrDefault());
+            }
 
-            return await new Task<TenantContext<AppTenant>>(() => { return tenantContext; });
+            return tenantContext; 
         }
     }
 }
