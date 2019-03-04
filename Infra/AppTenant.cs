@@ -39,7 +39,7 @@ namespace backEnd.Infra
         public async Task<TenantContext<AppTenant>> ResolveAsync(HttpContext context)
         {
             TenantContext<AppTenant> tenantContext = null;
-            Console.WriteLine("-->" + context.Request.PathBase);
+            Console.WriteLine("-->" + context.Request.Scheme);
             var tenant = tenants.FirstOrDefault(t =>
                 t.Hostnames.Any(h => h.Equals(context.Request.Host.Value.ToLower())));
            
