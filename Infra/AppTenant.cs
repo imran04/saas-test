@@ -56,6 +56,7 @@ namespace backEnd.Infra
             }
             Console.WriteLine(context.Request.Path);
             context.Request.Path=context.Request.Path.ToString().Remove(0, tenant.BasePath.Length);
+            Console.WriteLine(context.Request.Path);
             return tenantContext; 
         }
     }
