@@ -54,8 +54,8 @@ namespace backEnd.Infra
                 Console.WriteLine(tenant.Name + ":" + tenant.Hostnames);
                 tenantContext = new TenantContext<AppTenant>(tenants.FirstOrDefault());
             }
-
-            context.Request.Path=context.Request.Path.ToString().Remove(13, tenant.BasePath.Length);
+            Console.WriteLine(context.Request.Path);
+            context.Request.Path=context.Request.Path.ToString().Remove(0, tenant.BasePath.Length);
             return tenantContext; 
         }
     }
