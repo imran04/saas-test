@@ -45,14 +45,14 @@ namespace backEnd.Infra
            
             if (tenant != null)
             {
-                Console.WriteLine(tenant.Name + ":" + tenant.Hostnames);
+                Console.WriteLine(tenant.Name + ":" + tenant.Hostnames[0]);
                 tenantContext = new TenantContext<AppTenant>(tenant);
             }
             else
             {
                 tenant = tenants.FirstOrDefault();
-                Console.WriteLine(tenant.Name + ":" + tenant.Hostnames);
-                tenantContext = new TenantContext<AppTenant>(tenants.FirstOrDefault());
+                Console.WriteLine(tenant.Name + ":" + tenant.Hostnames[0]);
+                tenantContext = new TenantContext<AppTenant>(tenant);
             }
             Console.WriteLine(context.Request.Path.ToString().Remove(0, tenant.BasePath.Length));
             context.Request.Path=context.Request.Path.ToString().Remove(0, tenant.BasePath.Length);
