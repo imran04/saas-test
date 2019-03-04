@@ -28,8 +28,8 @@ namespace backEnd.Infra
            
         },
          new AppTenant {
-            Name = "Home Teant",
-            Hostnames = new[] { "34.73.160.251" },
+            Name = "www--- re yusuf",
+            Hostnames = new[] { "www.test.goldpi.com" },
            
             
         },
