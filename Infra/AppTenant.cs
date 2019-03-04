@@ -19,15 +19,15 @@ namespace backEnd.Infra
         {
         new AppTenant {
             Name = "Tenant 1",
-            Hostnames = new[] {  "localhost:5001" }
+            Hostnames = new[] {  "34.73.160.251/a" , }
         },
          new AppTenant {
             Name = "yusuf",
-            Hostnames = new[] { "localhost:5000" }
+            Hostnames = new[] { "34.73.160.251/c" }
         },
         new AppTenant {
             Name = "Tenant 2",
-            Hostnames = new[] { "localhost:6012" }
+            Hostnames = new[] { "34.73.160.251/aa" }
         }
     });
 
