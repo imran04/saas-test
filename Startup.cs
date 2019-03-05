@@ -45,7 +45,7 @@ namespace backEnd
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            var connection = "Data Source=blogging.db";
+            var connection = "Data Source=../../../blogging.db";
             services.AddDbContext<BackEndContext>
                 (options => options.UseSqlite(connection));
             services.AddMultitenancy<AppTenant, AppTenantResolver>();
