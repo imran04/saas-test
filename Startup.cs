@@ -45,9 +45,9 @@ namespace backEnd
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            var connection = "Data Source=/home/imranaapkeliye/saas-test/blogging.db";
+            var connection = "Data Source=goldpi.com;Initial Catalog=CTZIT_SAASMaster;user id=saasmauser;password=%746FSr&*();";
             services.AddDbContext<BackEndContext>
-                (options => options.UseSqlite(connection));
+                (options => options.UseSqlServer(connection));
             services.AddMultitenancy<AppTenant, AppTenantResolver>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
