@@ -13,6 +13,7 @@ namespace backEnd.Infra
     public class AppTenantResolver : ITenantResolver<AppTenant>
     {
         private BackEndContext db;
+       // private AppTenant Current;
         public AppTenantResolver(BackEndContext backEndContext)
         {
             db = backEndContext;

@@ -12,6 +12,8 @@ namespace backEnd.Models
 
         public string Hostname { get; set; }
 
+        public string ConnectionString { get; set; }
+
         [NotMapped]
         public string[] Hostnames => Hostname.Split('|');
         //public string BasePath { get; set; }

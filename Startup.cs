@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -46,10 +47,24 @@ namespace backEnd
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             var connection = "Data Source=goldpi.com;Initial Catalog=CTZIT_SAASMaster;user id=saasmauser;password=%746FSr&*();";
+           // var connection2 = "server=3.17.110.191;database=default;uid=root1;pwd=1qaz2wsx";
+            var connection2 = "server=3.17.110.191;database=default;user id=root1;password=1qaz2wsx";
             services.AddDbContext<BackEndContext>
                 (options => options.UseSqlServer(connection));
+
             services.AddMultitenancy<AppTenant, AppTenantResolver>();
+            services.AddDbContext<TeanantContext>
+                (options => options.UseMySQL(connection2));
+           // services.AddTransient<IDesignTimeDbContextFactory<TeanantContext>, DbContextFactory>();
+            // services.AddScoped(provider =>
+            // {
+            //     var factory = provider.GetService<IDesignTimeDbContextFactory<TeanantContext>>();
+            //     return factory.CreateDbContext(null);
+            // });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //services.AddDbContext<TeanantContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("TeanantContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
