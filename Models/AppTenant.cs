@@ -17,6 +17,7 @@ namespace backEnd.Models
         [NotMapped]
         public string[] Hostnames => Hostname.Split('|');
         //public string BasePath { get; set; }
+        
     }
 
     public class BackEndContext : DbContext
